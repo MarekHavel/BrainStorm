@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.euapp16.myapplication.Subject_activity">
+
+    <Button
+        android:id="@+id/button_IT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+
+        android:layout_marginTop="13dp"
+        android:text="IT" />
+
+    <Button
+        android:id="@+id/button_Q1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_IT"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="13dp"
+        android:layout_toEndOf="@+id/button_IT"
+        android:layout_toRightOf="@+id/button_IT"
+        android:layout_marginRight="13dp"
+        android:text="Math" />
+
+    <Button
+        android:text="Language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+
+        android:layout_marginTop="13dp"
+        android:id="@+id/button_Language"
+        android:layout_marginRight="13dp"
+        android:layout_below="@+id/button_IT"
+        android:layout_alignLeft="@+id/button_IT"
+        android:layout_alignStart="@+id/button_IT" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button_Q1"
+        android:layout_toEndOf="@+id/button_Q1"
+        android:id="@+id/button_Back" />
+
+
+
+</LinearLayout>

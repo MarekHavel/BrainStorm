@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Brainstorm</string>
+    <string name="age">Věk</string>
+    <string name="back">Zpět</string>
+    <string name="check_email">Kontrolní E-mail</string>
+    <string name="check_password">Kontrolní heslo</string>
+    <string name="country">Stát / Země</string>
+    <string name="email_address">E-mailová adresa</string>
+    <string name="login">Přihlásit</string>
+    <string name="name">Jméno</string>
+    <string name="nickname">Přezdívka (root)</string>
+    <string name="password">Heslo</string>
+    <string name="register">Registrovat</string>
+    <string name="school">Škola</string>
+</resources>
