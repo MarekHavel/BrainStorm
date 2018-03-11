@@ -21,21 +21,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /** Finds all required objects in the current View **/
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
-        editTextName = (EditText) findViewById(R.id.editText);
-        editTextPasswd = (EditText) findViewById(R.id.editText2);
+        /* Finds all required objects in the current View */
+        buttonLogin = findViewById(R.id.buttonLogin);
+        buttonRegister = findViewById(R.id.buttonRegister);
+        editTextName = findViewById(R.id.editText);
+        editTextPasswd = findViewById(R.id.editText2);
 
-        /** Sends you off to the Registration activity **/
+        /* Sends you off to the Registration activity */
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                intentMain = new Intent (getApplicationContext(), Register_Activity.class);
+                intentMain = new Intent (getApplicationContext(), logon_register.class);
                 startActivity(intentMain);
             }
         });
 
-        /* TEMPORARY - replace with database login check */
+        /* TODO - replace with database login check */
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {String n = editTextName.getText().toString();

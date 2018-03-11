@@ -8,19 +8,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/appTheme">
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register_Activity" />
         <activity android:name=".Subject_activity" />
         <activity android:name=".Math_Activity" />
         <activity android:name=".Language_activity" />
         <activity android:name=".IT_activity" />
-        <activity android:name=".QnA_activity"></activity>
+        <activity android:name=".QnA_activity" />
+        <activity android:name=".logon_register"></activity>
     </application>
 
 </manifest>
