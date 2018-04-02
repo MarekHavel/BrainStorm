@@ -10,24 +10,24 @@ import android.widget.Toast;
 
 public class QnA_activity extends AppCompatActivity {
 
-    Button back, reply;
-    TextView tvQuestion, tvAnswer;
-    Intent intentMain;
-    String quest, ans;
+    private Button back, reply;
+    private TextView tvQuestion, tvAnswer;
+    private Intent intentMain;
+    private String quest, ans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.qna_activity);
 
-        /** Finds all required objects in the current View **/
-        intentMain = (Intent) getIntent();
-        tvQuestion = (TextView) findViewById(R.id.textView_question);
-        tvAnswer = (TextView) findViewById(R.id.textView_answers);
-        back = (Button) findViewById(R.id.button_Back);
-        reply = (Button) findViewById(R.id.button_Reply);
+        /* Finds all required objects in the current View */
+        intentMain = getIntent();
+        tvQuestion = findViewById(R.id.textView_question);
+        tvAnswer = findViewById(R.id.textView_answers);
+        back = findViewById(R.id.button_Back);
+        reply = findViewById(R.id.button_Reply);
 
-        /** Return to previous activity **/
+        /* Return to previous activity */
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -35,8 +35,8 @@ public class QnA_activity extends AppCompatActivity {
         });
 
         /* TEMPORARY - replace with database question/answer readout */
-        quest = (String) intentMain.getStringExtra("question").toString();
-        ans = (String) intentMain.getStringExtra("answer").toString();
+        quest = intentMain.getStringExtra("question");
+        ans = intentMain.getStringExtra("answer");
 
         tvQuestion.setText(quest);
         tvAnswer.setText(ans);

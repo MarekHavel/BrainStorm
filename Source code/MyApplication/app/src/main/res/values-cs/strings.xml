@@ -10,4 +10,5 @@
     <string name="nickname">Přezdívka</string>
     <string name="password">Heslo</string>
     <string name="register">Registrovat</string>
+    <string name="logout">Logout</string>
 </resources>

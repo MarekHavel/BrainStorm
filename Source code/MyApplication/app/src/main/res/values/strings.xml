@@ -3,11 +3,13 @@
     <string name="birthday">Birthday</string>
     <string name="check_password">Check Password</string>
     <string name="country">Country</string>
-    <string name="email_address" translatable="false">Email Address</string>
+    <string name="email_address">Email Address</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="back">Back</string>
     <string name="login">Login</string>
     <string name="eu_app16_logo" translatable="false">EU-app16 logo</string>
     <string name="nickname">Nickname</string>
+    <string name="logout">Logout</string>
+    <string name="default_img">default img</string>
 </resources>

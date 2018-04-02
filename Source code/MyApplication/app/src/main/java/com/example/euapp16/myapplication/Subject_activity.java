@@ -1,54 +1,66 @@
 package com.example.euapp16.myapplication;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Button;
 
-public class Subject_activity extends AppCompatActivity {
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
 
-    Intent intentMain;
-    Button buttonBack, buttonIT, buttonMath, buttonLanguages;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
+public class Subject_activity extends AppCompatActivity {
+    private RecyclerView subjectRecycler;
+    private RecyclerView.Adapter subjectAdapter;
+    private RecyclerView.LayoutManager subjectLayoutManager;
+    RequestQueue subjectqueue;
+    Button logoffBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.subject_activity);
 
-        /** Finds all required objects in the current View **/
-        buttonBack = (Button) findViewById(R.id.button_Back);
-        buttonIT = (Button) findViewById(R.id.button_IT);
-        buttonMath = (Button) findViewById(R.id.button_Q1);
-        buttonLanguages = (Button) findViewById(R.id.button_Language);
+        logoffBtn=findViewById(R.id.button_logout);
+        logoffBtn.setOnClickListener(v -> finish());
 
-        /** Return to previous activity **/
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        ArrayList<SubjectItem> subjectItems = new ArrayList<>();
+        subjectItems.add(new SubjectItem(R.drawable.ic_android,"line1","line2"));
+        subjectItems.add(new SubjectItem(R.drawable.ic_cast,"line1","line2"));
+        subjectItems.add(new SubjectItem(R.drawable.ic_speaker,"line1","line2"));
 
-        /* TEMPORARY - replace with database category readout */
-        buttonIT.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                intentMain = new Intent (getApplicationContext(), IT_activity.class);
-                startActivity(intentMain);
-            }
-        });
+        subjectRecycler = findViewById(R.id.subjectRecyclerView);
+        subjectRecycler.setHasFixedSize(true);
+        subjectLayoutManager = new LinearLayoutManager(this);
+        subjectAdapter = new subjectAdapter(subjectItems);
+        subjectRecycler.setLayoutManager(subjectLayoutManager);
+        subjectRecycler.setAdapter(subjectAdapter);
 
-        buttonMath.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                intentMain = new Intent (getApplicationContext(), Math_Activity.class);
-                startActivity(intentMain);
-            }
-        });
+        populateCards();
 
-        buttonLanguages.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                intentMain = new Intent (getApplicationContext(), Language_activity.class);
-                startActivity(intentMain);
-            }
-        });
+    }
+
+    private void populateCards() {
+        String url = "http://10.0.0.5/eu/YellowTeam/API/subjects.php";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        JSONArray messageFromServer = response.getJSONArray("subjects");
+                        for(int pos = 0; messageFromServer.length()>pos; pos++){
+                            String zobraz = messageFromServer.getJSONObject(pos).toString();
+                            Log.d("predmety",zobraz);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }, Throwable::printStackTrace);
+        subjectqueue.add(request);
     }
 }
