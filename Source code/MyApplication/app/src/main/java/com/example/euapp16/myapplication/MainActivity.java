@@ -1,6 +1,7 @@
 package com.example.euapp16.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,6 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     private RequestQueue loginqueue;
     private EditText editTextName, editTextPasswd;
-    private Intent intentMain, intentSecond;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +35,38 @@ public class MainActivity extends AppCompatActivity {
         /* Sends you off to the Registration activity */
 
         buttonRegister.setOnClickListener(v -> {
-            intentMain = new Intent(getApplicationContext(), logon_register.class);
+            Intent intentMain = new Intent(getApplicationContext(), RegisterActivity.class);
             startActivity(intentMain);
         });
-        /* TODO - replace with database login check */
+
         buttonLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this,Subject_activity.class);
-            loginParse(editTextName.getText().toString(), editTextPasswd.getText().toString(), intent);
+            Intent intent = new Intent(MainActivity.this,PostListActivity.class);
+            String pass = editTextPasswd.getText().toString();
+            editTextPasswd.setText("");
+            loginParse(editTextName.getText().toString(), pass, intent);
         });
     }
 
     private void loginParse(String uname, String passwd, Intent intent){
-        String url = getString(R.string.server_address) + "/eu/YellowTeam/API/login.php?username=" + uname + "&password="+passwd;
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
+        JSONObject loginRequest = new JSONObject();
+        try {
+            loginRequest.put("username",uname);
+            loginRequest.put("password",passwd);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "http://app16.sspbrno.cz:80/eu/YellowTeam/API/login.php";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, loginRequest,
                 response -> {
                     try {
                         JSONObject messageFromServer = response.getJSONObject("result");
                         if (messageFromServer.getBoolean("enableLogin")&& uname.equals(messageFromServer.getString("username"))){
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.clear();
+                            editor.putInt("userID",messageFromServer.getInt("id"));
+                            editor.putString("username",uname);
+                            editor.apply();
                             startActivity(intent);
                         }
                         else{

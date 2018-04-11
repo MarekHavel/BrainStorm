@@ -13,4 +13,13 @@
         <item name="android:textColorSecondary">?attr/colorButtonNormal</item>
     </style>
 
+    <style name="appTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="appTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="appTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
